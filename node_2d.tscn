@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bm6x41k0iwa88" path="res://Sprites/Characters/Moose/moose-foot.png" id="4_4d7sh"]
 [ext_resource type="Texture2D" uid="uid://bnla4lgh4djaq" path="res://Sprites/Characters/Moose/moose-antler.png" id="5_ir8iy"]
 [ext_resource type="Script" uid="uid://raj7eu5ips4v" path="res://world_grid.gd" id="7_4d7sh"]
+[ext_resource type="Texture2D" uid="uid://c243e2fmjo0j" path="res://Sprites/Enemies/Spring/Curly Dock/curly-dock.png" id="10_ir8iy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kdubu"]
 size = Vector2(30, 62)
@@ -57,6 +58,12 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSet" id="TileSet_epypp"]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_0e48y")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1861"]
+size = Vector2(24, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mb5gg"]
+size = Vector2(72, 28)
 
 [node name="Node2D" type="Node2D" unique_id=1671782574]
 
@@ -120,3 +127,18 @@ z_index = -100
 position = Vector2(32, 32)
 tile_set = SubResource("TileSet_epypp")
 script = ExtResource("3_epypp")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=547732980]
+position = Vector2(298, 113)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D" unique_id=811415995]
+scale = Vector2(2, 2)
+texture = ExtResource("10_ir8iy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=101824021]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_c1861")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=1086794403]
+position = Vector2(0, 40)
+shape = SubResource("RectangleShape2D_mb5gg")
