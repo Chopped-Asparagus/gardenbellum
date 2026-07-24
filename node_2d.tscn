@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://b3esaq2xlfyb5" path="res://antler_body.gd" id="5_hqns4"]
 [ext_resource type="Texture2D" uid="uid://bnla4lgh4djaq" path="res://Sprites/Characters/Moose/moose-antler.png" id="5_ir8iy"]
 [ext_resource type="Script" uid="uid://raj7eu5ips4v" path="res://world_grid.gd" id="7_4d7sh"]
+[ext_resource type="Script" uid="uid://rlv04v3x2g3r" path="res://area_2d.gd" id="7_x0ka3"]
 [ext_resource type="Texture2D" uid="uid://c243e2fmjo0j" path="res://Sprites/Enemies/Spring/Curly Dock/curly-dock.png" id="10_ir8iy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kdubu"]
@@ -111,6 +112,14 @@ scale = Vector2(2, 2)
 texture = ExtResource("5_ir8iy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1/AntlerBody" unique_id=350280621]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_rj586")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="Player1/AntlerBody" unique_id=1061987729]
+script = ExtResource("7_x0ka3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player1/AntlerBody/Area2D" unique_id=864195000]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_rj586")
 disabled = true
