@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-const APEX_DIST = 400000
 const SPEED_MAX = 700
 const DIST_MOD = 0.001
 const RETURN_MOD = 0.04
@@ -86,8 +85,4 @@ func handle_return() -> void:
 func handle_spin() -> void:
 	self.rotate(ROTATE_MOD)
 	rotationAccumulated += ROTATE_MOD
-	pass
-	
-func handle_collision() -> void:
-	if (collider.)
 	pass
