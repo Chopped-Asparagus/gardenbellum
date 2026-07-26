@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://raj7eu5ips4v" path="res://world_grid.gd" id="7_4d7sh"]
 [ext_resource type="Script" uid="uid://rlv04v3x2g3r" path="res://area_2d.gd" id="7_x0ka3"]
 [ext_resource type="Texture2D" uid="uid://c243e2fmjo0j" path="res://Sprites/Enemies/Spring/Curly Dock/curly-dock.png" id="10_ir8iy"]
-[ext_resource type="Script" uid="uid://b12c05p8m40dx" path="res://enemy_area_2d.gd" id="12_0h7mo"]
+[ext_resource type="Script" uid="uid://cfyu3vlvf34bh" path="res://animatable_body_2d.gd" id="12_0h7mo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kdubu"]
 size = Vector2(30, 62)
@@ -62,12 +62,16 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_0e48y")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1861"]
+size = Vector2(24, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mb5gg"]
+size = Vector2(72, 28)
+
 [node name="Node2D" type="Node2D" unique_id=1671782574]
 
 [node name="Player1" type="CharacterBody2D" parent="." unique_id=537237461]
 position = Vector2(500, 200)
-collision_layer = 8
-collision_mask = 0
 script = ExtResource("1_q6r6c")
 
 [node name="TorsoCollisionShape2D" type="CollisionShape2D" parent="Player1" unique_id=1129329464]
@@ -101,8 +105,6 @@ texture = ExtResource("4_4d7sh")
 
 [node name="AntlerBody" type="CharacterBody2D" parent="Player1" unique_id=746801353]
 position = Vector2(-8, -38)
-collision_layer = 2
-collision_mask = 4
 script = ExtResource("5_hqns4")
 
 [node name="Antler" type="Sprite2D" parent="Player1/AntlerBody" unique_id=1316091053]
@@ -113,15 +115,15 @@ texture = ExtResource("5_ir8iy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player1/AntlerBody" unique_id=350280621]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_rj586")
+disabled = true
 
 [node name="Area2D" type="Area2D" parent="Player1/AntlerBody" unique_id=1061987729]
-collision_layer = 2
-collision_mask = 4
 script = ExtResource("7_x0ka3")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Player1/AntlerBody/Area2D" unique_id=864195000]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_rj586")
+disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="Player1" unique_id=847650179]
 
@@ -137,15 +139,28 @@ position = Vector2(32, 32)
 tile_set = SubResource("TileSet_epypp")
 script = ExtResource("3_epypp")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=263637343 groups=["enemies"]]
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=547732980 groups=["enemies"]]
 position = Vector2(298, 113)
-collision_layer = 4
-collision_mask = 2
 script = ExtResource("12_0h7mo")
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=811415995]
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D" unique_id=811415995]
 scale = Vector2(2, 2)
 texture = ExtResource("10_ir8iy")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=1941237758]
-polygon = PackedVector2Array(-13, -13, -13, -45, 13, -45, 13, 26, 38, 50, 38, 58, -40, 58, -41, 48, -15, 24)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=101824021]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_c1861")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=1086794403]
+position = Vector2(0, 40)
+shape = SubResource("RectangleShape2D_mb5gg")
+
+[node name="Area2D" type="Area2D" parent="AnimatableBody2D" unique_id=263637343]
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="AnimatableBody2D/Area2D" unique_id=1347798436]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_c1861")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="AnimatableBody2D/Area2D" unique_id=379575111]
+position = Vector2(0, 40)
+shape = SubResource("RectangleShape2D_mb5gg")

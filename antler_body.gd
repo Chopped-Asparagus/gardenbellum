@@ -27,7 +27,6 @@ func _physics_process(delta: float) -> void:
 		handle_return()
 	if (thrown or returning):
 		handle_spin()
-		handle_collision()
 	
 func begin_throw() -> void:
 	speed = SPEED_MAX
@@ -44,6 +43,7 @@ func handle_throw(angle: float) -> void:
 	velocity.y = sin(angle) * speed
 	distTraveled += speed
 	speed = speed - distTraveled * DIST_MOD
+	get_node("Area2D").active = true
 	if (speed < 30):
 		thrown = false
 		returning = true
@@ -81,6 +81,7 @@ func handle_return() -> void:
 		parent.antlerThrown = false
 		rotation_degrees = 0
 		rotationAccumulated = 0
+		get_node("Area2D").active = false
 
 func handle_spin() -> void:
 	self.rotate(ROTATE_MOD)
