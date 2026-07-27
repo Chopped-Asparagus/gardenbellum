@@ -18,3 +18,4 @@ func _process(delta: float) -> void:
 func _on_area_entered(area: Area2D, damage: int, enemy: Node) -> void:
 	if (active):
 		enemy.hp -= damage
+		enemy.currentDamageTime = enemy.DAMAGE_TIME
