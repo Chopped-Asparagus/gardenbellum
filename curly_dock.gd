@@ -13,6 +13,7 @@ var prevDamageTime = 0
 func _physics_process(delta: float) -> void:
 	if (hp <= 0):
 		queue_free()
+	
 	if (currentDamageTime >= 1):
 		prevDamageTime = currentDamageTime
 		currentDamageTime -= 1;
@@ -21,5 +22,14 @@ func _physics_process(delta: float) -> void:
 	elif (currentDamageTime == 0 && prevDamageTime == 1):
 		prevDamageTime = 0
 		sprite.set_instance_shader_parameter("red", false)
+		
+	var target = find_target()
 
 	move_and_slide()
+
+func find_target() -> Vector2i:
+	var finalVect = Vector2i(0,0)
+	var minDist = -1
+	
+	
+	return finalVect

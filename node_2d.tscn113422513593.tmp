@@ -68,7 +68,7 @@ shader = ExtResource("13_nr8wp")
 
 [node name="Node2D" type="Node2D" unique_id=1671782574]
 
-[node name="Player1" type="CharacterBody2D" parent="." unique_id=537237461 groups=["players"]]
+[node name="Player1" type="CharacterBody2D" parent="." unique_id=537237461]
 position = Vector2(500, 200)
 collision_layer = 8
 collision_mask = 0
