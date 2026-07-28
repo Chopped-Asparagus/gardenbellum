@@ -1,14 +1,16 @@
 extends CharacterBody2D
 class_name CurlyDock
 
-const SPEED = 150.0
+const SPEED = 120.0
 const JUMP_VELOCITY = -400.0
 const DAMAGE_TIME = 5
+const PLAYER_GROUP = "players"
 
 var hp = 50
 var currentDamageTime = 0
 var prevDamageTime = 0
 @onready var sprite = get_node("Sprite2D")
+@onready var playerArray = get_tree().get_nodes_in_group(PLAYER_GROUP)
 
 func _physics_process(delta: float) -> void:
 	if (hp <= 0):
@@ -23,13 +25,23 @@ func _physics_process(delta: float) -> void:
 		prevDamageTime = 0
 		sprite.set_instance_shader_parameter("red", false)
 		
-	var target = find_target()
+	var targetPosition = find_target()
+	var angle = position.angle_to_point(targetPosition)
+	velocity.x = cos(angle) * SPEED
+	velocity.y = sin(angle) * SPEED
 
 	move_and_slide()
 
-func find_target() -> Vector2i:
-	var finalVect = Vector2i(0,0)
+func find_target() -> Vector2:
+	var finalVect = Vector2(0,0)
 	var minDist = -1
+	var target
+	for player in playerArray:
+		if (minDist == -1 || position.distance_to(player.position) < minDist):
+			minDist = position.distance_to(player.position)
+			finalVect = player.position
+			pass
+		pass
 	
 	
 	return finalVect
