@@ -8,10 +8,20 @@ const ANTLER_SUB_INDEX = 0
 const ANTLER_OFFSET = -8
 const FLIP_OFFSET = 2
 const CHARACTER_TYPE = "MOOSE"
+const FOOT_SPEED = 5.0
+const FOOT_MAX = 20.0
+const FORWARD_FOOT_POS = Vector2(-6.0,38.0)
+const BACK_FOOT_POS = Vector2(8.0,38.0)
 
 var attackDisabled = false
 var antlerThrown = false
 var flipped = false
+var forwardFootMoved = 0
+var backFootMoved = 0
+var footDirection = false
+
+@onready var forwardFoot = get_node("ForwardFoot")
+@onready var backFoot = get_node("BackFoot")
 
 func _physics_process(_delta: float) -> void:
 	
@@ -67,6 +77,10 @@ func handle_movement():
 		
 	move_and_slide()
 	
+	if (velocity.x != 0 || velocity.y != 0):
+		move_feet()
+		pass
+	
 func handle_antler_throw():
 	var antlerBody = self.get_child(ANTLER_BODY_INDEX)
 	var antler = antlerBody.get_child(ANTLER_SUB_INDEX)
@@ -74,3 +88,19 @@ func handle_antler_throw():
 		antlerBody.begin_throw()
 		antlerThrown = true
 		pass
+		
+func move_feet() -> void:
+	if (footDirection):
+		if (forwardFoot.position.y < FOOT_MAX + FORWARD_FOOT_POS.y):
+			forwardFoot.position.y -= FOOT_SPEED
+			backFoot.position.y += FOOT_SPEED
+			pass
+		else:
+			footDirection = false
+	else:
+		if (backFoot.position.y < FOOT_MAX + FORWARD_FOOT_POS.y):
+			forwardFoot.position.y += FOOT_SPEED
+			backFoot.position.y -= FOOT_SPEED
+		else:
+			footDirection = true
+	pass
