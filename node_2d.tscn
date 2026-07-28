@@ -11,9 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bnla4lgh4djaq" path="res://Sprites/Characters/Moose/moose-antler.png" id="5_ir8iy"]
 [ext_resource type="Script" uid="uid://raj7eu5ips4v" path="res://world_grid.gd" id="7_4d7sh"]
 [ext_resource type="Script" uid="uid://rlv04v3x2g3r" path="res://area_2d.gd" id="7_x0ka3"]
-[ext_resource type="Texture2D" uid="uid://c243e2fmjo0j" path="res://Sprites/Enemies/Spring/Curly Dock/curly-dock.png" id="10_ir8iy"]
-[ext_resource type="Script" uid="uid://k06wmr56eqon" path="res://curly_dock.gd" id="12_nr8wp"]
-[ext_resource type="Shader" uid="uid://cb130yflvf8yt" path="res://curly_dock_damage.gdshader" id="13_nr8wp"]
+[ext_resource type="Script" uid="uid://sdmk6exg3mqf" path="res://enemy_handler.gd" id="13_nr8wp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kdubu"]
 size = Vector2(30, 62)
@@ -62,9 +60,6 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSet" id="TileSet_epypp"]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_0e48y")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_c1861"]
-shader = ExtResource("13_nr8wp")
 
 [node name="Node2D" type="Node2D" unique_id=1671782574]
 
@@ -139,24 +134,5 @@ position = Vector2(32, 32)
 tile_set = SubResource("TileSet_epypp")
 script = ExtResource("3_epypp")
 
-[node name="CurlyDock1" type="CharacterBody2D" parent="." unique_id=410733512 groups=["enemies"]]
-position = Vector2(298, 113)
-collision_layer = 4
-collision_mask = 2
-script = ExtResource("12_nr8wp")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CurlyDock1" unique_id=1941237758]
-polygon = PackedVector2Array(-13, -13, -13, -45, 13, -45, 13, 26, 38, 50, 38, 58, -40, 58, -41, 48, -15, 24)
-disabled = true
-
-[node name="Sprite2D" type="Sprite2D" parent="CurlyDock1" unique_id=811415995]
-material = SubResource("ShaderMaterial_c1861")
-scale = Vector2(2, 2)
-texture = ExtResource("10_ir8iy")
-
-[node name="Area2D" type="Area2D" parent="CurlyDock1" unique_id=1390063225]
-collision_layer = 4
-collision_mask = 2
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CurlyDock1/Area2D" unique_id=1247473608]
-polygon = PackedVector2Array(-13, -13, -13, -45, 13, -45, 13, 26, 38, 50, 38, 58, -40, 58, -41, 48, -15, 24)
+[node name="EnemyHandler" type="Node2D" parent="." unique_id=330490452]
+script = ExtResource("13_nr8wp")
