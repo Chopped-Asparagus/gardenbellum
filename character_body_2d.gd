@@ -8,8 +8,8 @@ const ANTLER_SUB_INDEX = 0
 const ANTLER_OFFSET = -8
 const FLIP_OFFSET = 2
 const CHARACTER_TYPE = "MOOSE"
-const FOOT_SPEED = 5.0
-const FOOT_MAX = 20.0
+const FOOT_SPEED = 0.5
+const FOOT_MAX = 2.5
 const FORWARD_FOOT_POS = Vector2(-6.0,38.0)
 const BACK_FOOT_POS = Vector2(8.0,38.0)
 
@@ -91,14 +91,14 @@ func handle_antler_throw():
 		
 func move_feet() -> void:
 	if (footDirection):
-		if (forwardFoot.position.y < FOOT_MAX + FORWARD_FOOT_POS.y):
+		if (backFoot.position.y < FOOT_MAX + FORWARD_FOOT_POS.y):
 			forwardFoot.position.y -= FOOT_SPEED
 			backFoot.position.y += FOOT_SPEED
 			pass
 		else:
 			footDirection = false
 	else:
-		if (backFoot.position.y < FOOT_MAX + FORWARD_FOOT_POS.y):
+		if (forwardFoot.position.y < FOOT_MAX + FORWARD_FOOT_POS.y):
 			forwardFoot.position.y += FOOT_SPEED
 			backFoot.position.y -= FOOT_SPEED
 		else:
