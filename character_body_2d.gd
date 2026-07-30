@@ -8,8 +8,8 @@ const ANTLER_SUB_INDEX = 0
 const ANTLER_OFFSET = -8
 const FLIP_OFFSET = 2
 const CHARACTER_TYPE = "MOOSE"
-const FOOT_SPEED = 0.5
-const FOOT_MAX = 2.5
+const FOOT_SPEED = 0.2
+const FOOT_MAX = 1.4
 const FORWARD_FOOT_POS = Vector2(-6.0,38.0)
 const BACK_FOOT_POS = Vector2(8.0,38.0)
 
@@ -34,8 +34,6 @@ func handle_movement():
 	var torso = self.get_child(TORSO_INDEX)
 	var antlerBody = self.get_child(ANTLER_BODY_INDEX)
 	var antler = antlerBody.get_child(ANTLER_SUB_INDEX)
-	
-	#handle movement
 	
 	velocity.x = 0
 	velocity.y = 0
