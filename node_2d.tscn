@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://raj7eu5ips4v" path="res://world_grid.gd" id="7_4d7sh"]
 [ext_resource type="Script" uid="uid://rlv04v3x2g3r" path="res://area_2d.gd" id="7_x0ka3"]
 [ext_resource type="Texture2D" uid="uid://ckuipji6qeyt5" path="res://Sprites/Util/HUD/Heart/full_heart.png" id="13_0h7mo"]
+[ext_resource type="Script" uid="uid://v32ec2w6v4fb" path="res://hud_control.gd" id="13_d2bti"]
 [ext_resource type="Script" uid="uid://sdmk6exg3mqf" path="res://enemy_handler.gd" id="13_nr8wp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kdubu"]
@@ -140,27 +141,36 @@ script = ExtResource("13_nr8wp")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1965828283]
 
-[node name="Control" type="Control" parent="HUD" unique_id=818385558]
+[node name="HUD Control" type="Control" parent="HUD" unique_id=818385558 groups=["hud"]]
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(20, 20)
+script = ExtResource("13_d2bti")
+
+[node name="Hearts" type="Control" parent="HUD/HUD Control" unique_id=178088267]
+layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
-offset_transform_enabled = true
-offset_transform_position = Vector2(20, 20)
 
-[node name="Sprite2D" type="Sprite2D" parent="HUD/Control" unique_id=1381107276]
+[node name="Sprite2D" type="Sprite2D" parent="HUD/HUD Control/Hearts" unique_id=1381107276]
 scale = Vector2(2, 2)
 texture = ExtResource("13_0h7mo")
 
-[node name="Sprite2D2" type="Sprite2D" parent="HUD/Control" unique_id=929207737]
+[node name="Sprite2D2" type="Sprite2D" parent="HUD/HUD Control/Hearts" unique_id=929207737]
 position = Vector2(-35, 0)
 scale = Vector2(2, 2)
 texture = ExtResource("13_0h7mo")
 
-[node name="Sprite2D3" type="Sprite2D" parent="HUD/Control" unique_id=1043464683]
+[node name="Sprite2D3" type="Sprite2D" parent="HUD/HUD Control/Hearts" unique_id=1043464683]
 position = Vector2(-70, 0)
 scale = Vector2(2, 2)
 texture = ExtResource("13_0h7mo")
