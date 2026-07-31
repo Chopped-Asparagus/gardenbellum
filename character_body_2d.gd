@@ -12,6 +12,7 @@ const FOOT_SPEED = 0.2
 const FOOT_MAX = 1.4
 const FORWARD_FOOT_POS = Vector2(-6.0,38.0)
 const BACK_FOOT_POS = Vector2(8.0,38.0)
+const I_FRAMES = 10
 
 var attackDisabled = false
 var antlerThrown = false
@@ -19,13 +20,17 @@ var flipped = false
 var forwardFootMoved = 0
 var backFootMoved = 0
 var footDirection = false
+var maxHealth = 6
+var health = maxHealth
 
 @onready var forwardFoot = get_node("ForwardFoot")
 @onready var backFoot = get_node("BackFoot")
+@onready var hud = get_tree().get_first_node_in_group("hud")
 
 func _physics_process(_delta: float) -> void:
 	
 	handle_movement()
+	handle_damage()
 	
 	if (CHARACTER_TYPE == "MOOSE"):
 		handle_antler_throw()
@@ -101,4 +106,8 @@ func move_feet() -> void:
 			backFoot.position.y -= FOOT_SPEED
 		else:
 			footDirection = true
+	pass
+	
+func handle_damage() -> void:
+	var enemyHitArray = get_tree().get_nodes_in_group("enemy_hitboxes")
 	pass
