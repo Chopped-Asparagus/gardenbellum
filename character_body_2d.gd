@@ -12,7 +12,8 @@ const FOOT_SPEED = 0.2
 const FOOT_MAX = 1.4
 const FORWARD_FOOT_POS = Vector2(-6.0,38.0)
 const BACK_FOOT_POS = Vector2(8.0,38.0)
-const I_FRAME_MAX = 10
+const I_FRAME_MAX = 40
+const RED_FRAME_MAX = 10
 
 var attackDisabled = false
 var antlerThrown = false
@@ -23,6 +24,7 @@ var footDirection = false
 var maxHealth = 6
 var health = maxHealth
 var iFrames = 0
+var redFrames = 0
 
 @onready var forwardFoot = get_node("ForwardFoot")
 @onready var backFoot = get_node("BackFoot")
@@ -36,6 +38,16 @@ func _physics_process(_delta: float) -> void:
 	handle_movement()
 	if (iFrames > 0):
 		iFrames -= 1
+	if (iFrames % 4 > 1):
+		visible = false
+	else:
+		visible = true
+		
+	if (redFrames > 0):
+		redFrames -= 1
+		material.set_shader_parameter("red", true)
+	else:
+		material.set_shader_parameter("red", false)
 	
 	if (CHARACTER_TYPE == "MOOSE"):
 		handle_antler_throw()
@@ -118,4 +130,5 @@ func take_damage(damage: int, type: String = "normal") -> void:
 		health -= damage
 		hud.refresh_health(health)
 		iFrames = I_FRAME_MAX
+		redFrames = RED_FRAME_MAX
 	pass

@@ -18,7 +18,6 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nr8wp"]
 shader = ExtResource("1_d2bti")
-shader_parameter/red = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kdubu"]
 size = Vector2(30, 62)
