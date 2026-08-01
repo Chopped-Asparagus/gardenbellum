@@ -2,15 +2,11 @@ shader_type canvas_item;
 
 uniform bool red = false;
 
-void vertex() {
+void fragment() {
 	if (red == true) {
 		COLOR.r += 0.4;
 	}
 	// Called for every vertex the material is visible on.
-}
-
-void fragment() {
-	// Called for every pixel the material is visible on.
 }
 
 //void light() {

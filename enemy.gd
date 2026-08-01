@@ -2,13 +2,16 @@ extends CharacterBody2D
 class_name Enemy
 
 const PLAYER_GROUP = "players"
+const MAX_DAMAGE_SHADER_TIME = 6
 
 @onready var playerArray = get_tree().get_nodes_in_group(PLAYER_GROUP)
 
 var hp
+var damageShaderTime = 0
 
-func take_damage(damage: int, type: String) -> void:
+func take_damage(damage: int, type: String = "Normal") -> void:
 	hp -= damage
+	damageShaderTime = MAX_DAMAGE_SHADER_TIME
 	pass
 	
 func move_to_player(speed: int) -> void:
@@ -29,3 +32,17 @@ func find_target() -> Vector2:
 			minDist = position.distance_to(player.position)
 			finalVect = player.position
 	return finalVect
+	
+func load_enemy_damage_shader() -> void:
+	var defaultShaderLoad = load("res://enemy_default.gdshader")
+	var defaultShaderMat = ShaderMaterial.new()
+	defaultShaderMat.shader = defaultShaderLoad
+	material = defaultShaderMat
+	
+func handle_enemy_default_shader() -> void:
+	if (damageShaderTime >= 1):
+		damageShaderTime -= 1;
+		if (damageShaderTime == MAX_DAMAGE_SHADER_TIME - 1):
+			material.set_shader_parameter("red", true)
+		elif (damageShaderTime == 0):
+			material.set_shader_parameter("red", false)

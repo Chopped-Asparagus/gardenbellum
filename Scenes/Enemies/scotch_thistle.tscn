@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dlioss8bh7rt"]
+
+[ext_resource type="Script" uid="uid://btbyne2fa3l2q" path="res://Scenes/Enemies/scotch_thistle.gd" id="1_qb7gx"]
+[ext_resource type="Texture2D" uid="uid://bjtqyobaqscjp" path="res://Sprites/Enemies/Spring/Thistle/scotch-thistle.png" id="2_ln4s1"]
+[ext_resource type="Script" uid="uid://q4ho8ctw4bk1" path="res://Scenes/Enemies/curly_dock_hit_hurt_box.gd" id="3_ln4s1"]
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1864302189 groups=["enemies"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_qb7gx")
+metadata/_custom_type_script = "uid://dvhcrm3cgamlp"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1899459164]
+use_parent_material = true
+scale = Vector2(2, 2)
+texture = ExtResource("2_ln4s1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=15302418]
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(-8, -26, 8, -26, 15, -7, 3, 12, 6, 17, 8, 27, -8, 27, -6, 17, -3, 12, -15, -7)
+
+[node name="EnemyHitHurtBox" type="Area2D" parent="." unique_id=668167530]
+collision_layer = 20
+collision_mask = 10
+script = ExtResource("3_ln4s1")
+metadata/_custom_type_script = "uid://q4ho8ctw4bk1"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyHitHurtBox" unique_id=1462976042]
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(-8, -26, 8, -26, 15, -7, 3, 12, 6, 17, 8, 27, -8, 27, -6, 17, -3, 12, -15, -7)

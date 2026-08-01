@@ -14,9 +14,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var enemyArray = get_tree().get_nodes_in_group(ENEMY_GROUP)
 	for i in enemyArray.size():
-		enemyArray[i].get_node("Area2D").area_entered.connect(_on_area_entered.bind(ANTLER_DAMAGE, enemyArray[i]))
+		enemyArray[i].get_node("EnemyHitHurtBox").area_entered.connect(_on_area_entered.bind(ANTLER_DAMAGE, enemyArray[i]))
 	
 func _on_area_entered(area: Area2D, damage: int, enemy: Node) -> void:
 	if (active):
-		enemy.hp -= damage
-		enemy.currentDamageTime = enemy.DAMAGE_TIME
+		enemy.take_damage(damage)

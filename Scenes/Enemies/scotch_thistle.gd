@@ -1,12 +1,12 @@
 extends Enemy
-class_name CurlyDock
+class_name ScotchThistle
 
-const SPEED = 120.0
+const SPEED = 60.0
 
 var damage = 1
 
 func _ready() -> void:
-	hp = 60
+	hp = 120
 	load_enemy_damage_shader()
 	pass
 
