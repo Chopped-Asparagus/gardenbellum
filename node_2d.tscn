@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://rlv04v3x2g3r" path="res://area_2d.gd" id="7_x0ka3"]
 [ext_resource type="Script" uid="uid://v32ec2w6v4fb" path="res://hud_control.gd" id="13_d2bti"]
 [ext_resource type="Script" uid="uid://sdmk6exg3mqf" path="res://enemy_handler.gd" id="13_nr8wp"]
+[ext_resource type="Shader" uid="uid://dev1l0gjkj8gr" path="res://enemy_default.gdshader" id="13_ta5nu"]
 [ext_resource type="Script" uid="uid://b5issa5fvp0og" path="res://hud_hearts.gd" id="14_d2bti"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nr8wp"]
@@ -67,6 +68,11 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSet" id="TileSet_epypp"]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_0e48y")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_btl54"]
+resource_local_to_scene = true
+shader = ExtResource("13_ta5nu")
+shader_parameter/red = false
 
 [node name="Node2D" type="Node2D" unique_id=1671782574]
 
@@ -148,6 +154,7 @@ tile_set = SubResource("TileSet_epypp")
 script = ExtResource("3_epypp")
 
 [node name="EnemyHandler" type="Node2D" parent="." unique_id=330490452]
+material = SubResource("ShaderMaterial_btl54")
 script = ExtResource("13_nr8wp")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1965828283]
