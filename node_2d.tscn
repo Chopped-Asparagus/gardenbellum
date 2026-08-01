@@ -11,9 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://bnla4lgh4djaq" path="res://Sprites/Characters/Moose/moose-antler.png" id="5_ir8iy"]
 [ext_resource type="Script" uid="uid://raj7eu5ips4v" path="res://world_grid.gd" id="7_4d7sh"]
 [ext_resource type="Script" uid="uid://rlv04v3x2g3r" path="res://area_2d.gd" id="7_x0ka3"]
-[ext_resource type="Texture2D" uid="uid://ckuipji6qeyt5" path="res://Sprites/Util/HUD/Heart/full_heart.png" id="13_0h7mo"]
 [ext_resource type="Script" uid="uid://v32ec2w6v4fb" path="res://hud_control.gd" id="13_d2bti"]
 [ext_resource type="Script" uid="uid://sdmk6exg3mqf" path="res://enemy_handler.gd" id="13_nr8wp"]
+[ext_resource type="Script" uid="uid://b5issa5fvp0og" path="res://hud_hearts.gd" id="14_d2bti"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kdubu"]
 size = Vector2(30, 62)
@@ -160,17 +160,4 @@ anchor_right = 1.0
 offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="HUD/HUD Control/Hearts" unique_id=1381107276]
-scale = Vector2(2, 2)
-texture = ExtResource("13_0h7mo")
-
-[node name="Sprite2D2" type="Sprite2D" parent="HUD/HUD Control/Hearts" unique_id=929207737]
-position = Vector2(-35, 0)
-scale = Vector2(2, 2)
-texture = ExtResource("13_0h7mo")
-
-[node name="Sprite2D3" type="Sprite2D" parent="HUD/HUD Control/Hearts" unique_id=1043464683]
-position = Vector2(-70, 0)
-scale = Vector2(2, 2)
-texture = ExtResource("13_0h7mo")
+script = ExtResource("14_d2bti")

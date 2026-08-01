@@ -12,7 +12,7 @@ const FOOT_SPEED = 0.2
 const FOOT_MAX = 1.4
 const FORWARD_FOOT_POS = Vector2(-6.0,38.0)
 const BACK_FOOT_POS = Vector2(8.0,38.0)
-const I_FRAMES = 10
+const I_FRAME_MAX = 10
 
 var attackDisabled = false
 var antlerThrown = false
@@ -22,15 +22,20 @@ var backFootMoved = 0
 var footDirection = false
 var maxHealth = 6
 var health = maxHealth
+var iFrames = 0
 
 @onready var forwardFoot = get_node("ForwardFoot")
 @onready var backFoot = get_node("BackFoot")
 @onready var hud = get_tree().get_first_node_in_group("hud")
 
+func _ready() -> void:
+	hud.generate_heart_array(health)
+
 func _physics_process(_delta: float) -> void:
 	
 	handle_movement()
-	handle_damage()
+	if (iFrames > 0):
+		iFrames -= 1
 	
 	if (CHARACTER_TYPE == "MOOSE"):
 		handle_antler_throw()
@@ -108,6 +113,9 @@ func move_feet() -> void:
 			footDirection = true
 	pass
 	
-func handle_damage() -> void:
-	var enemyHitArray = get_tree().get_nodes_in_group("enemy_hitboxes")
+func take_damage(damage: int, type: String = "normal") -> void:
+	if (iFrames == 0):
+		health -= damage
+		hud.refresh_health(health)
+		iFrames = I_FRAME_MAX
 	pass

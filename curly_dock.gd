@@ -6,6 +6,7 @@ const JUMP_VELOCITY = -400.0
 const DAMAGE_TIME = 5
 const PLAYER_GROUP = "players"
 
+var damage = 1
 var hp = 50
 var currentDamageTime = 0
 var prevDamageTime = 0
@@ -30,7 +31,8 @@ func _physics_process(delta: float) -> void:
 	velocity.x = cos(angle) * SPEED
 	velocity.y = sin(angle) * SPEED
 
-	move_and_slide()
+	if (position.distance_to(targetPosition) > 10):
+		move_and_slide()
 
 func find_target() -> Vector2:
 	var finalVect = Vector2(0,0)
