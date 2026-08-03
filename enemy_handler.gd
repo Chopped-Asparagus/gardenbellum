@@ -11,6 +11,7 @@ var wave = 0
 var waveLeft = 0
 var waveOver = true
 var difficulty = 0
+var started = false
 
 @onready var enemyTimer = Timer.new()
 @onready var waveLabelTimer = Timer.new()
@@ -21,20 +22,19 @@ var difficulty = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	waveLabelTimer.wait_time = WAVE_LABEL_TIME
-	add_child(waveLabelTimer)
-	add_child(enemyTimer)
+	
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if (waveLeft == 0 && get_tree().get_nodes_in_group("enemies").size() == 0):
-		waveOver = true
-	if (waveOver):
-		waveOver = false
-		wave += 1
-		start_wave()
-	pass
+	if (started):
+		if (waveLeft == 0 && get_tree().get_nodes_in_group("enemies").size() == 0):
+			waveOver = true
+		if (waveOver):
+			waveOver = false
+			wave += 1
+			start_wave()
+		pass
 	
 func _spawn_enemy() -> void:
 	var enemy = get_enemy().instantiate()
@@ -78,10 +78,17 @@ func start_wave() -> void:
 	
 func _on_wave_start() -> void:
 	if (wave % 1 == 0):
-		timerSecs *= 0.8
+		timerSecs *= 0.2
 	enemyTimer.start(timerSecs)
 	enemyTimer.timeout.connect(_spawn_enemy)
 	waveLabel.visible = false
 	waveLabelTimer.timeout.disconnect(_on_wave_start)
 	waveLabelTimer.stop()
+	pass
+	
+func start() -> void:
+	waveLabelTimer.wait_time = WAVE_LABEL_TIME
+	add_child(waveLabelTimer)
+	add_child(enemyTimer)
+	started = true
 	pass

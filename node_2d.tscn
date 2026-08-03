@@ -2,6 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://htv0o7etarl" path="res://player.gdshader" id="1_d2bti"]
 [ext_resource type="Script" uid="uid://dy613h1edyhog" path="res://character_body_2d.gd" id="1_q6r6c"]
+[ext_resource type="Script" uid="uid://108xjedb0uou" path="res://phase_handler.gd" id="1_rjqkl"]
 [ext_resource type="Texture2D" uid="uid://cw4q1ta63ai8k" path="res://Sprites/Tiles/grass-soil-16-sheet.png" id="1_wtcfe"]
 [ext_resource type="Texture2D" uid="uid://4lhwvsw1lk76" path="res://Sprites/Tiles/grass-soil-label-sheet.png" id="2_0e48y"]
 [ext_resource type="Texture2D" uid="uid://dexbvmkekjvtb" path="res://Sprites/Characters/Moose/moose-torso.png" id="2_q6r6c"]
@@ -76,7 +77,8 @@ resource_local_to_scene = true
 shader = ExtResource("13_ta5nu")
 shader_parameter/red = false
 
-[node name="Node2D" type="Node2D" unique_id=1671782574]
+[node name="PhaseHandler" type="Node2D" unique_id=1671782574]
+script = ExtResource("1_rjqkl")
 
 [node name="Player1" type="CharacterBody2D" parent="." unique_id=537237461 groups=["players"]]
 material = SubResource("ShaderMaterial_nr8wp")
@@ -155,7 +157,7 @@ position = Vector2(32, 32)
 tile_set = SubResource("TileSet_epypp")
 script = ExtResource("3_epypp")
 
-[node name="EnemyHandler" type="Node2D" parent="." unique_id=330490452]
+[node name="EnemyHandler" type="Node2D" parent="." unique_id=330490452 groups=["enemy handler"]]
 material = SubResource("ShaderMaterial_btl54")
 script = ExtResource("13_nr8wp")
 
