@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if (hp <= 0):
-		queue_free()
+		handle_death()
 	handle_enemy_default_shader()
 		
 	move_to_player(SPEED)

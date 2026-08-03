@@ -2,6 +2,7 @@ extends Control
 
 const heartVal = 5
 @onready var heartNode = get_node("Hearts")
+@onready var currencyNode = get_node("Currency")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,3 +20,7 @@ func generate_heart_array(health: int) -> void:
 	if (heartNode == null):
 		heartNode = get_node("Hearts")
 	heartNode.generate_heart_array(health)
+	
+func increase_currency(value: int) -> void:
+	currencyNode.get_node("Label").currency += value
+	pass

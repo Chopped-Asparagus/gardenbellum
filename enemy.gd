@@ -5,9 +5,11 @@ const PLAYER_GROUP = "players"
 const MAX_DAMAGE_SHADER_TIME = 6
 
 @onready var playerArray = get_tree().get_nodes_in_group(PLAYER_GROUP)
+@onready var goldCoin = preload("res://Scenes/Currency/gold_coin.tscn")
 
 var hp
 var damageShaderTime = 0
+var value = 0
 
 func take_damage(damage: int, type: String = "Normal") -> void:
 	hp -= damage
@@ -46,3 +48,14 @@ func handle_enemy_default_shader() -> void:
 			material.set_shader_parameter("red", true)
 		elif (damageShaderTime == 0):
 			material.set_shader_parameter("red", false)
+			
+func handle_death() -> void:
+	create_coin()
+	queue_free()
+	pass
+	
+func create_coin() -> void:
+	var coin = goldCoin.instantiate()
+	coin.global_position = global_position
+	get_tree().current_scene.add_child(coin)
+	

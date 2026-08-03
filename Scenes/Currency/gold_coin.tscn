@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bvc0w6b2o2e75"]
+
+[ext_resource type="Script" uid="uid://cq7lcuu37s5ar" path="res://gold_coin.gd" id="1_lcfol"]
+[ext_resource type="Texture2D" uid="uid://bq3c6qu82n7xd" path="res://Sprites/Util/Currency/gold_coin.png" id="2_af3jr"]
+
+[node name="Gold Coin" type="Area2D" unique_id=293563090]
+collision_layer = 32
+collision_mask = 8
+script = ExtResource("1_lcfol")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2105371746]
+scale = Vector2(2, 2)
+texture = ExtResource("2_af3jr")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1312367102]
+polygon = PackedVector2Array(-11, 1, 0, -10, 11, 1, 0, 12)
