@@ -13,6 +13,7 @@ var waveOver = true
 var difficulty = 0
 var started = false
 
+@onready var phaseHandler = get_tree().current_scene
 @onready var enemyTimer = Timer.new()
 @onready var waveLabelTimer = Timer.new()
 @onready var curlyDockScene = preload("res://Scenes/Enemies/curly_dock_1.tscn")
@@ -33,7 +34,7 @@ func _process(delta: float) -> void:
 		if (waveOver):
 			waveOver = false
 			wave += 1
-			start_wave()
+			phaseHandler.start_plan_phase()
 		pass
 	
 func _spawn_enemy() -> void:

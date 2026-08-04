@@ -18,3 +18,7 @@ func _process(delta: float) -> void:
 func start_defense_phase() -> void:
 	eh.start()
 	pass
+	
+func start_plan_phase() -> void:
+	
+	pass
